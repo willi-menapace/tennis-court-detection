@@ -26,15 +26,15 @@ The detection algorithm is started for the middle frame of the input video file 
 format).
 
 ```
-Usage: ./detect video_path [output_path]
-       video_path:  path to an input avi file.
-       output_path: path to an output file where the xy court point coordinates will be written.
-                    This argument is optional. If not present, then a window with the result will be opened.
+Usage: ./detect directory_path
+       directory_path:  path to an input image directory.
 ```
 
-## Output file
+## Output format
 
-The output file contains one point per line. The XY coordinates are separated by a
+For each image `<imagename>` in the input directory, two output files are produced.
+`<imagename>.with_lines.png` contains a visualization of the detected lines.
+`<imagename>.txt` contains one point per line. The XY coordinates are separated by a
 semicolon ";".  The points are in the following order:
 
 ```

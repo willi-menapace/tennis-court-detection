@@ -9,17 +9,17 @@ using namespace cv;
 
 void printVideoInfo(const cv::VideoCapture vc)
 {
-  int frameCount = int(vc.get(CV_CAP_PROP_FRAME_COUNT));
-  int width = int(vc.get(CV_CAP_PROP_FRAME_WIDTH));
-  int height = int(vc.get(CV_CAP_PROP_FRAME_HEIGHT));
-  int fps = int(vc.get(CV_CAP_PROP_FPS));
+  int frameCount = int(vc.get(CAP_PROP_FRAME_COUNT));
+  int width = int(vc.get(CAP_PROP_FRAME_WIDTH));
+  int height = int(vc.get(CAP_PROP_FRAME_HEIGHT));
+  int fps = int(vc.get(CAP_PROP_FPS));
   std::cout << "Video properties (frames: " << frameCount << ", w: " << width << ", h: " << height
     << ", fps: " << fps << ")" << std::endl;
 }
 
 void displayImage(const string& windowName, const Mat& image, int delay)
 {
-  namedWindow(windowName, CV_WINDOW_AUTOSIZE);
+  namedWindow(windowName, WINDOW_AUTOSIZE);
   imshow(windowName, image);
   waitKey(delay);
 }

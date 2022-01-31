@@ -30,10 +30,9 @@ public:
 
   bool isVertical() const;
 
-private:
-
   cv::Point2f getPointOnLineClosestTo(const cv::Point2f point) const;
 
+private:
 
   cv::Point2f u; // point on line
   cv::Point2f v; // collinear vector

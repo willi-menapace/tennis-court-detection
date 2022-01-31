@@ -17,7 +17,7 @@ CourtLinePixelDetector::Parameters::Parameters()
 {
   threshold = 80;
   diffThreshold = 20;
-  t = 4;
+  t = 3;
   gradientKernelSize = 3;
   kernelSize = 41;
 }
@@ -57,7 +57,7 @@ Mat CourtLinePixelDetector::run(const Mat& frame)
 cv::Mat CourtLinePixelDetector::getLuminanceChannel(const cv::Mat& frame)
 {
   Mat imgYCbCr;
-  cvtColor(frame, imgYCbCr, CV_RGB2YCrCb);
+  cvtColor(frame, imgYCbCr, COLOR_RGB2YCrCb);
   Mat luminanceChannel(frame.rows, frame.cols, CV_8UC1);
   const int from_to[2] = {0, 0};
   mixChannels(&frame, 1, &luminanceChannel, 1, from_to, 1);

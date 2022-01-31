@@ -38,8 +38,9 @@ TennisCourtModel::TennisCourtModel()
 //  vLinePairs = getPossibleLinePairs(vLines);
   hLinePairs.push_back(std::make_pair(hLines[0], hLines[4]));
   hLinePairs.push_back(std::make_pair(hLines[0], hLines[3]));
-  hLinePairs.push_back(std::make_pair(hLines[1], hLines[3]));
-  hLinePairs.push_back(std::make_pair(hLines[1], hLines[4]));
+  std::cout << "Warning: not considering upper service line for model matching" << std::endl;
+  //hLinePairs.push_back(std::make_pair(hLines[1], hLines[3]));
+  //hLinePairs.push_back(std::make_pair(hLines[1], hLines[4]));
 
 
   vLinePairs.push_back(std::make_pair(vLines[0], vLines[4]));
@@ -243,6 +244,14 @@ float TennisCourtModel::evaluateModel(const std::vector<cv::Point2f>& courtPoint
   if (d1 < t || d2 < t || d3 < t || d4 < t)
   {
     return GlobalParameters().initialFitScore;
+  }
+
+  // Do not ammits lower parts of the field to go out of the image
+  int rows = binaryImage.rows;
+
+  if(courtPoints[1].y > rows && courtPoints[2].y > rows && courtPoints[5].y > rows && courtPoints[6].y > rows) {
+      std::cout << "Rejected solution" << std::endl;
+      return GlobalParameters().initialFitScore;
   }
 
   score += computeScoreForLineSegment(courtPoints[0], courtPoints[1], binaryImage);
